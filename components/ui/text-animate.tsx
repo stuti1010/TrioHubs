@@ -152,6 +152,7 @@ const defaultItemAnimationVariants: Record<
           y: { duration: 0.3 },
           opacity: { duration: 0.4 },
           filter: { duration: 0.3 },
+          delay,
         },
       }),
       exit: {
@@ -172,6 +173,7 @@ const defaultItemAnimationVariants: Record<
       hidden: { opacity: 0, filter: "blur(10px)", y: -20 },
       show: (delay: number) => ({
         opacity: 1,
+        delay,
         filter: "blur(0px)",
         y: 0,
         transition: {
@@ -302,21 +304,17 @@ const defaultItemAnimationVariants: Record<
 
 export function TextAnimate({
   children,
-  delay = 0,
-  duration = 0.3,
   variants,
   className,
   segmentClassName,
   as: Component = "p",
   startOnView = true,
-  once = false,
   by = "word",
   animation = "fadeIn",
   ...props
 }: TextAnimateProps) {
   const MotionComponent = motion.create(Component);
 
-  // Use provided variants or default variants based on animation type
   const finalVariants = animation
     ? {
         container: {
@@ -332,6 +330,7 @@ export function TextAnimate({
             transition: {
               staggerChildren: staggerTimings[by],
               staggerDirection: -1,
+              variants,
             },
           },
         },

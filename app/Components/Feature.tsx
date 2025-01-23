@@ -61,7 +61,7 @@ const Features = () => {
                 <div className="absolute inset-0 bg-black bg-opacity-50 rounded-2xl"></div>
                 <div className="relative text-white font-semibold">
                   <h4 className="text-xl font-bold mb-4">{feature.title}</h4>
-                  <TextAnimate animation="blurInUp" by="character">
+                  <TextAnimate  animation="blurInUp" by="character">
                     {feature.description}
                </TextAnimate>
             <p className="mb-6"></p>
